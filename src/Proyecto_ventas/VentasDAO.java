@@ -14,7 +14,7 @@ public class VentasDAO {
     Connection con;
     Conexion conectar = new Conexion();
     Object datos[][];
-
+    
     public void insertar(int no_factura, int nit, String nombre, String fecha, double total) {
 
         String sql = "insert into compras(No_Factura,NIT,Nombre,Fecha,Total) values (?,?,?,?,?)";

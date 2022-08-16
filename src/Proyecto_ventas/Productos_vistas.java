@@ -103,13 +103,13 @@ public class Productos_vistas {
          ActionListener funcion_pdf = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SucursalesDAO sd = new SucursalesDAO();
+                ProductosDAO pd = new ProductosDAO();
                 try {
-                    sd.pdf();
+                    pd.pdf();
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Sucursales_vistas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Productos_vistas.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (DocumentException ex) {
-                    Logger.getLogger(Sucursales_vistas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Productos_vistas.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
@@ -121,7 +121,8 @@ public class Productos_vistas {
         ProductosDAO sf = new ProductosDAO();
         sf.eliminar(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(),0)+""));
     }
-    //METODO LEER ARCHIVO ---------------------------------------------------------------------------------------------------------
+    
+//METODO LEER ARCHIVO ---------------------------------------------------------------------------------------------------------
     private String leerarchivo() {
         JPanel c1 = new JPanel();
         JFileChooser fc = new JFileChooser();
@@ -180,14 +181,15 @@ public class Productos_vistas {
 //METODO TABLA ---------------------------------------------------------------------------------------------------------------------------------    
     private void tabla(){ 
         String columnas[] = {"CÓDIGO", "NOMBRE", "DESCRIPCIÓN", "CANTIDAD", "PRECIO"};
-        SucursalesDAO sd = new SucursalesDAO();
-        Object filas[][] = sd.listar_tabla();
+        ProductosDAO pd = new ProductosDAO();
+        Object filas[][] = pd.listar_tabla();
         tabla = new JTable(filas, columnas);
         sp = new JScrollPane(tabla);
         sp.setBounds(30, 30, 560, 600);
         sucursales.add(sp);
     }
-    //METODO CREAR
+
+//METODO CREAR --------------------------------------------------------------------------------------------------------------- 
     public void crear() {
         JFrame frame_producto = new JFrame();
         frame_producto.setTitle("NUEVO PRODUCTO");
@@ -212,7 +214,7 @@ public class Productos_vistas {
         t2.setBounds(150, 95, 135, 25);
         p1.add(t2);
         JLabel l3 = new JLabel("DESCRIPCION:");
-        l3.setBounds(50, 140, 80, 50);
+        l3.setBounds(50, 140, 100, 50);
         p1.add(l3);
         JTextField t3 = new JTextField();
         t3.setBounds(150, 155, 135, 25);
@@ -236,8 +238,8 @@ public class Productos_vistas {
         ActionListener gaurdar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SucursalesDAO sd = new SucursalesDAO();
-                sd.crear(Integer.parseInt(t1.getText()), t2.getText(), t3.getText(), t4.getText(), Integer.parseInt(t5.getText()));
+                ProductosDAO sd = new ProductosDAO();
+                sd.crear(Integer.parseInt(t1.getText()), t2.getText(), t3.getText(), Integer.parseInt(t4.getText()), Integer.parseInt(t5.getText()));
                 frame_producto.setVisible(false);
             }
         };
@@ -271,8 +273,8 @@ public class Productos_vistas {
         t2.setBounds(150, 95, 135, 25);
         t2.setText(tabla.getValueAt(tabla.getSelectedRow(), 1)+"");
         p1.add(t2);
-        JLabel l3 = new JLabel("DESCRIPCION:");
-        l3.setBounds(50, 140, 80, 50);
+        JLabel l3 = new JLabel("DESCRIPCIÓN:");
+        l3.setBounds(50, 140, 100, 50);
         p1.add(l3);
         JTextField t3 = new JTextField();
         t3.setBounds(150, 155, 135, 25);

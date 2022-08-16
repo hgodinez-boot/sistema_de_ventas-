@@ -79,7 +79,7 @@ public class ProductosDAO {
         }
         return datos;
     }
-    
+    //METODO PARA INGRESAR NUEVO REGISTRO DE PRODUCTOS (FUNCIONAL)
     public void crear(int codigo, String nombre, String descripcion, int cantidad, int precio){
        String sql = "insert into productos(codigo_producto, nombre_producto, descripcion_producto, cantidad_producto, precio_producto) values (?,?,?,?,?) ";
        try{
@@ -94,7 +94,7 @@ public class ProductosDAO {
        }catch(Exception e){
        }
    }
-    
+   //METODO PARA PARA ACTUALIZAR REGISTRO DE PRODUCTOS (FUNCIONAL) 
    public void actualizar(int codigo, String nombre, String descripcion, int cantidad, int precio ){
     String sql = "update productos set nombre_producto ='" + nombre + "', descripcion_producto='" + descripcion + "', cantidad_producto='" + cantidad + "' , precio_producto='" + precio + "' where codigo_producto ='" + codigo + "'";
         try {
@@ -105,7 +105,7 @@ public class ProductosDAO {
             System.out.println(e);
         }
     }
-   
+   //MÉTODO EXPORTAR REGISTO DE LA TABLA PRODUCTOS A FORMATO PDF
    public void pdf() throws FileNotFoundException, DocumentException {
         FileOutputStream gen = new FileOutputStream("Reporte-Productos.pdf");
         Document documento = new Document();
@@ -138,7 +138,7 @@ public class ProductosDAO {
         } catch (Exception e) {
         }
     }
-   
+   //METODO ELIMINAR REGISTRO EN LA TABLA DE PRODUCTOS--------------------------------------------------------------------
    public void eliminar(int x){
    String sql = "delete from productos where codigo_producto ="+x;
    try{
@@ -153,7 +153,7 @@ public class ProductosDAO {
     
 //   public static void main(String[] args){
 //        ProductosDAO admin= new ProductosDAO();
-//        admin.filtro(7);
+//        admin.eliminar(144);
 //    } 
     
     

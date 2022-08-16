@@ -44,7 +44,6 @@ public class SucursalesDAO {
                 datos[x][4] = rs.getInt(5);
                 x++;    
             }
-            
         } catch (Exception e){   
         }
         return datos;

@@ -9,9 +9,10 @@ public class administrador extends JFrame{
     JTabbedPane pestañas = new JTabbedPane();
     
     //JPanel sucursales = new JPanel();
-    JPanel vendedores = new JPanel();
-    JPanel clientes = new JPanel();
-    JPanel productos = new JPanel();
+    
+//    JPanel vendedores = new JPanel();
+//    JPanel clientes = new JPanel();
+//    JPanel productos = new JPanel();
     
     private void inicio(){
         
@@ -65,7 +66,7 @@ public class administrador extends JFrame{
             pestañas.addTab("SUCURSALES", sv.sucursales);
             pestañas.addTab("PRODUCTOS", pv.sucursales);
             pestañas.addTab("CLIENTES", cv.sucursales);
-            pestañas.addTab("VENDEDORES", vv.sucursales);
+            pestañas.addTab("VENDEDORES", vv.vendedores);
             pestañas.setBackground(Color.YELLOW);
             
             add(pestañas);    
