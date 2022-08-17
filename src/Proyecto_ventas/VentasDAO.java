@@ -1,4 +1,3 @@
-
 package Proyecto_ventas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +15,6 @@ public class VentasDAO {
     Object datos[][];
     
     public void insertar(int no_factura, int nit, String nombre, String fecha, double total) {
-
         String sql = "insert into compras(No_Factura,NIT,Nombre,Fecha,Total) values (?,?,?,?,?)";
         try {
             con = conectar.Conectar();
@@ -29,8 +27,7 @@ public class VentasDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
-    }
-    
+    }    
     public int filtro() {
         String sql = "select * from compras;";
         int x = 1;
@@ -41,13 +38,12 @@ public class VentasDAO {
             while (rs.next()) {
                 x++;
             }
-
         } catch (Exception e) {
         }
         return x;
     }
     
-       public Object[][] filtro_ventas(int factura, int nit, String nombre, String fecha ){
+    public Object[][] filtro_ventas(int factura, int nit, String nombre, String fecha ){
        String sql = "select * from compras where No_Factura = " + "'" + factura + "'"+ " or NIT = " + "'" + nit + "'" + " or Nombre = " + "'" + nombre + "'" + " or Fecha = " + "'" + fecha + "'" + ";";
            try{
                con=conectar.Conectar();
@@ -74,9 +70,7 @@ public class VentasDAO {
                    return null;
                }else{
                    return datos;
-               }
-               
-               
+               }    
            } catch (Exception e){
                
            } 
@@ -110,20 +104,4 @@ public class VentasDAO {
         }
         return datos;
     }
-    
-//    public static void main(String[] args){
-//        VentasDAO vs = new VentasDAO();
-//        Object respuestas[][] = vs.filtro_ventas(0, 0, null, "2022-08-14");
-//        
-//        if(respuestas == null){} else{
-//            
-//            for (int i=0; i < respuestas.length; i++){
-//                for (int j=0; j < respuestas[i].length; j++){
-//                    System.out.println(respuestas[i][j]);
-//                }
-//            }
-//            
-//        }
-//        
-//    } 
 }

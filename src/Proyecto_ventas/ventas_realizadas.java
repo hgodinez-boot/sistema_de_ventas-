@@ -1,6 +1,4 @@
-
 package Proyecto_ventas;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -99,13 +97,10 @@ public class ventas_realizadas {
                 } else{
                     sp.setVisible(false);
                     resultados(resultado);
-                }
-                
-                
+                }   
             }
         };
-        b1.addActionListener(verificar);
-        
+        b1.addActionListener(verificar);  
     }
     
     private void resultados(Object result [][]){
@@ -120,9 +115,7 @@ public class ventas_realizadas {
     private void tabla(){
         String columnas []= {"No. FACTURA","NIT","NOMBRE","FECHA","TOTAL"};
         VentasDAO vd = new VentasDAO();
-
         Object filas [][] = vd.listar_tabla();
-
         tabla = new JTable(filas,columnas);
         sp = new JScrollPane(tabla);
         sp.setBounds(50, 350, 800, 300);

@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.itextpdf.text.DocumentException;
 import java.awt.Color;
-//import com.mycompany.bases_ejemplo.Bases_ejemplo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -24,7 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+//import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Sucursales_vistas {
     JPanel sucursales = new JPanel();
@@ -159,18 +158,14 @@ public class Sucursales_vistas {
     }
 //METODO CARGA MASIVA -----------------------------------------------------------------------------------------------
     private void carga_masiva() throws FileNotFoundException, IOException, ParseException {
-
         String archivo_retorno = leerarchivo();
-
         JsonParser parse = new JsonParser();
         JsonArray matriz = parse.parse(archivo_retorno).getAsJsonArray();
-
         for (int i = 0; i < matriz.size(); i++) {
             JsonObject objeto = matriz.get(i).getAsJsonObject();
             SucursalesDAO sd = new SucursalesDAO();
             sd.crear(objeto.get("codigo").getAsInt(), objeto.get("nombre").getAsString(), objeto.get("direccion").getAsString(), objeto.get("correo").getAsString(), objeto.get("telefono").getAsInt());
         }
-
     }
 //METODO TABLA ---------------------------------------------------------------------------------------------------------------------------------
     private void tabla() {

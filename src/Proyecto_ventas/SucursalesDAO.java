@@ -1,5 +1,4 @@
 package Proyecto_ventas;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -13,8 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
-public class SucursalesDAO {
-    
+public class SucursalesDAO {    
     PreparedStatement ps;
     ResultSet rs;
     Connection con;

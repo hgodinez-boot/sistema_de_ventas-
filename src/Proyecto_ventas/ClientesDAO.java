@@ -1,5 +1,4 @@
 package Proyecto_ventas;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -17,15 +16,13 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class ClientesDAO {    
-    
+public class ClientesDAO {       
     PreparedStatement ps;
     ResultSet rs;
     Connection con;
     Conexion conectar = new Conexion();
     String nombres[];
     Object datos[][]; 
-    //Object resultado [] = new Object[3];
    
    public String[] filtro(String nombre, int nit, String correo, String genero ){
        String sql = "select * from clientes where nombre = '" + nombre + "'" + " or nit = " + "'" + nit + "'" + " or correo = " + "'" + correo + "'" + " or genero = " + "'" + genero + "'" + ";";       
@@ -46,12 +43,10 @@ public class ClientesDAO {
                    nombres[x]= rs.getString(2);
                    x++;
                }     
-           } catch (Exception e){
-               
+           } catch (Exception e){    
            } 
            return nombres;
        }
-
 //METODO FILTRO DEL NIT-----------------------------------------------------------------------------------------------------------------------
    public int filtro_nit(String nombre){
        String sql = "select * from clientes where nombre = '" + nombre + "'" +" ;";
@@ -63,15 +58,10 @@ public class ClientesDAO {
             if (rs.next()) {
                 return rs.getInt(3);
             }
-
         } catch (Exception e) {
-
         }
-
-        return 0;
-       
+        return 0;    
    }
-
 //METODO LISTAR LOS REGISTROS DE LA TABLA CLIENTES
    public Object [][] listar_tabla(){
         String instruccion = "select * from clientes";
@@ -95,8 +85,7 @@ public class ClientesDAO {
                 datos[x][3] = rs.getString(4);
                 datos[x][4] = rs.getString(5);
                 x++;    
-            }
-            
+            }            
         } catch (Exception e){   
         }
         return datos;
@@ -173,10 +162,4 @@ public class ClientesDAO {
    }
    JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO CORRECTAMENTE");
    }   
-   
-   
-//    public static void main(String[] args){
-//        ClientesDAO log= new ClientesDAO();
-//        log.eliminar(81);
-//    } 
-}//cierre ClientesDAO
+}

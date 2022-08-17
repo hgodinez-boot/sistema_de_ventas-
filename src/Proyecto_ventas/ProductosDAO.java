@@ -1,4 +1,3 @@
-
 package Proyecto_ventas;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -17,8 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class ProductosDAO {
-    
+public class ProductosDAO {    
     PreparedStatement ps;
     ResultSet rs;
     Connection con;
@@ -27,30 +25,22 @@ public class ProductosDAO {
     Object resultado [] = new Object[3];
     
     public Object[] filtro(int codigo) {
-
         String sql = "select * from productos where codigo = " + "'" + codigo + "'" + ";";
         try {
             con = conectar.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-
             if (rs.next()) {
                 resultado[0] = rs.getInt(1);
                 resultado[1] = rs.getString(2);
                 resultado[2] = rs.getDouble(5);
-
                 return resultado;
             }
-
         } catch (Exception e) {
-
         }
-
         return null;
     }
-    
-    
-
+ 
     public Object [][] listar_tabla(){
         String instruccion = "select * from productos";
         try{
@@ -73,13 +63,12 @@ public class ProductosDAO {
                 datos[x][3] = rs.getInt(4);
                 datos[x][4] = rs.getInt(5);
                 x++;    
-            }
-            
+            }            
         } catch (Exception e){   
         }
         return datos;
     }
-    //METODO PARA INGRESAR NUEVO REGISTRO DE PRODUCTOS (FUNCIONAL)
+    //METODO PARA INGRESAR NUEVO REGISTRO DE PRODUCTOS 
     public void crear(int codigo, String nombre, String descripcion, int cantidad, int precio){
        String sql = "insert into productos(codigo_producto, nombre_producto, descripcion_producto, cantidad_producto, precio_producto) values (?,?,?,?,?) ";
        try{
@@ -94,7 +83,7 @@ public class ProductosDAO {
        }catch(Exception e){
        }
    }
-   //METODO PARA PARA ACTUALIZAR REGISTRO DE PRODUCTOS (FUNCIONAL) 
+   //METODO PARA PARA ACTUALIZAR REGISTRO DE PRODUCTOS  
    public void actualizar(int codigo, String nombre, String descripcion, int cantidad, int precio ){
     String sql = "update productos set nombre_producto ='" + nombre + "', descripcion_producto='" + descripcion + "', cantidad_producto='" + cantidad + "' , precio_producto='" + precio + "' where codigo_producto ='" + codigo + "'";
         try {
@@ -138,24 +127,15 @@ public class ProductosDAO {
         } catch (Exception e) {
         }
     }
-   //METODO ELIMINAR REGISTRO EN LA TABLA DE PRODUCTOS--------------------------------------------------------------------
+   //METODO ELIMINAR REGISTRO EN LA TABLA DE PRODUCTOS--------------------------
    public void eliminar(int x){
    String sql = "delete from productos where codigo_producto ="+x;
    try{
        con=conectar.Conectar();
        ps=con.prepareStatement(sql);
-       ps.execute();
-       
+       ps.execute();       
    }catch(Exception e){       
    }
    JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO CORRECTAMENTE");
-   }    
-    
-//   public static void main(String[] args){
-//        ProductosDAO admin= new ProductosDAO();
-//        admin.eliminar(144);
-//    } 
-    
-    
-    
+   }        
 }

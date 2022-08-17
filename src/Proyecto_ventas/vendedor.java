@@ -1,11 +1,10 @@
 package Proyecto_ventas;
-
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+//import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -36,9 +35,7 @@ public class vendedor  extends JFrame{
                 }
             };
         });
-        
-        
-        
+                        
         setTitle("VENTAS");
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             setLocationRelativeTo(null);
@@ -54,17 +51,11 @@ public class vendedor  extends JFrame{
             pestañas.addTab("NUEVA VENTA", nv.general);
             pestañas.addTab("VENTAS REALIZADAS", vr.ventas_general);
             pestañas.setBackground(Color.YELLOW);
-            add(pestañas);
-            
-            
-            
+            add(pestañas);         
     }
     
-    public static void main(String[] args){
-        vendedor admin= new vendedor();
-        admin.inicio();
-    } 
-    
-    
-    
+//    public static void main(String[] args){
+//        vendedor admin= new vendedor();
+//        admin.inicio();
+//    }     
 }

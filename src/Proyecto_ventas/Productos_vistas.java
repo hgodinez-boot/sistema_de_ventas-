@@ -1,6 +1,4 @@
-
 package Proyecto_ventas;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -29,18 +27,15 @@ import javax.swing.JTextField;
 public class Productos_vistas {
     JPanel sucursales = new JPanel();
     JTable tabla = new JTable();
-    JScrollPane sp = new JScrollPane ();
-   
-//METODO DE BOOTONES -----------------------------------------------------------------------------------------------------------------------    
-    private void botones(){
-        
+    JScrollPane sp = new JScrollPane ();   
+//METODO DE BOOTONES -----------------------------------------------------------    
+    private void botones(){        
         JLabel lop = new JLabel("¿QUÉ DESEA HACER?");
         lop.setBounds(730, 50, 250, 50);
         sucursales.add(lop);
         sucursales.setLayout(null);
         sucursales.setBackground(Color.WHITE);
-
-//BOTON CREAR ----------------------------------------------------------------------------------------------------------------------------        
+//BOTON CREAR ------------------------------------------------------------------       
         JButton crear = new JButton("CREAR");
         crear.setBounds(640, 120, 130, 50);
         crear.setBackground(Color.YELLOW);
@@ -52,7 +47,7 @@ public class Productos_vistas {
             }
         };
         crear.addActionListener(funcion_crear);
-//BOTON CARGA MASIVA----------------------------------------------------------------------------------------------------------------------------
+//BOTON CARGA MASIVA------------------------------------------------------------
         JButton carga = new JButton("CARGA MASIVA");
         carga.setBounds(810, 120, 130, 50);
         carga.setBackground(Color.YELLOW);
@@ -63,7 +58,6 @@ public class Productos_vistas {
                 try {
                     carga_masiva();
                 } catch (IOException ex) {
-
                     Logger.getLogger(Sucursales_vistas.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
                     Logger.getLogger(Sucursales_vistas.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,7 +65,7 @@ public class Productos_vistas {
             }
         };
         carga.addActionListener(funcion_carga);
-//BOTON ACTUALIZAR ----------------------------------------------------------------------------------------------------------------------------
+//BOTON ACTUALIZAR -------------------------------------------------------------
         JButton actualizar = new JButton("ACTUALIZAR");
         actualizar.setBounds(640, 210, 130, 50);
         actualizar.setBackground(Color.YELLOW);
@@ -83,7 +77,7 @@ public class Productos_vistas {
             }
         };
         actualizar.addActionListener(funcion_actualizar);
-//BOTON ELIMINAR ----------------------------------------------------------------------------------------------------------------------------
+//BOTON ELIMINAR ---------------------------------------------------------------
         JButton eliminar = new JButton("ELIMINAR");
         eliminar.setBounds(810, 210, 130, 50);
         eliminar.setBackground(Color.YELLOW);
@@ -95,7 +89,7 @@ public class Productos_vistas {
             }
         };
         eliminar.addActionListener(funcion_eliminar);
-//BOTON EXPORTA A PDF----------------------------------------------------------------------------------------------------------------------------      
+//BOTON EXPORTA A PDF-----------------------------------------------------------      
         JButton exportar = new JButton("EXPORTA A PDF");
         exportar.setBounds(640, 300, 300, 50);
         exportar.setBackground(Color.YELLOW);
@@ -114,15 +108,13 @@ public class Productos_vistas {
             }
         };
         exportar.addActionListener(funcion_pdf);       
-    }
-    
-    //COMIENZO DE LOS METODOS-------------------------------------------------------------------------------------------------------    
+    }    
+    //COMIENZO DE LOS METODOS---------------------------------------------------    
     private void eliminar_opcion(){
         ProductosDAO sf = new ProductosDAO();
         sf.eliminar(Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(),0)+""));
-    }
-    
-//METODO LEER ARCHIVO ---------------------------------------------------------------------------------------------------------
+    }    
+//METODO LEER ARCHIVO ----------------------------------------------------------
     private String leerarchivo() {
         JPanel c1 = new JPanel();
         JFileChooser fc = new JFileChooser();
@@ -160,25 +152,19 @@ public class Productos_vistas {
             return content;
         }
         return null;
-    }
-    
-    //METODO CARGA MASIVA -----------------------------------------------------------------------------------------------
+    }    
+    //METODO CARGA MASIVA ------------------------------------------------------
     private void carga_masiva() throws FileNotFoundException, IOException, ParseException {
-
         String archivo_retorno = leerarchivo();
-
         JsonParser parse = new JsonParser();
         JsonArray matriz = parse.parse(archivo_retorno).getAsJsonArray();
-
         for (int i = 0; i < matriz.size(); i++) {
             JsonObject objeto = matriz.get(i).getAsJsonObject();
             ProductosDAO sd = new ProductosDAO();
             sd.crear(objeto.get("codigo").getAsInt(), objeto.get("nombre").getAsString(), objeto.get("descripcion").getAsString(), objeto.get("cantidad").getAsInt(), objeto.get("precio").getAsInt());
         }
-
     }
-
-//METODO TABLA ---------------------------------------------------------------------------------------------------------------------------------    
+//METODO TABLA -----------------------------------------------------------------    
     private void tabla(){ 
         String columnas[] = {"CÓDIGO", "NOMBRE", "DESCRIPCIÓN", "CANTIDAD", "PRECIO"};
         ProductosDAO pd = new ProductosDAO();
@@ -188,8 +174,7 @@ public class Productos_vistas {
         sp.setBounds(30, 30, 560, 600);
         sucursales.add(sp);
     }
-
-//METODO CREAR --------------------------------------------------------------------------------------------------------------- 
+//METODO CREAR ----------------------------------------------------------------- 
     public void crear() {
         JFrame frame_producto = new JFrame();
         frame_producto.setTitle("NUEVO PRODUCTO");
@@ -200,7 +185,7 @@ public class Productos_vistas {
         p1.setLayout(null);
         p1.setBackground(Color.WHITE);
         frame_producto.add(p1);
-        //LABEL Y TEXTFIELD--------------------------------------------------------------------------------------------------------
+        //LABEL Y TEXTFIELD-----------------------------------------------------
         JLabel l1 = new JLabel("CÓDIGO:");
         l1.setBounds(50, 20, 80, 50);
         p1.add(l1);
@@ -244,9 +229,8 @@ public class Productos_vistas {
             }
         };
         b1.addActionListener(gaurdar);
-    }
-    
-    //METODO ACTUALIZAR ----------------------------------------------------------------------------------------------------------------
+    }    
+    //METODO ACTUALIZAR --------------------------------------------------------
     public void actualizar() {
         JFrame frame_actualizar = new JFrame();
         frame_actualizar.setTitle("ACTUALIZAR PRODUCTO");
@@ -257,7 +241,7 @@ public class Productos_vistas {
         p1.setLayout(null);
         p1.setBackground(Color.WHITE);
         frame_actualizar.add(p1);
-        //LABEL Y TEXTFIELD--------------------------------------------------------------------------------------------------------
+        //LABEL Y TEXTFIELD-----------------------------------------------------
         JLabel l1 = new JLabel("CÓDIGO:");
         l1.setBounds(50, 20, 80, 50);
         p1.add(l1);
@@ -307,12 +291,9 @@ public class Productos_vistas {
             }
         };
         b1.addActionListener(actualizar);
-    }
-    
-    
+    }   
     public void ejecutar(){
         botones();
         tabla();
-    }    
-    
+    }        
 }

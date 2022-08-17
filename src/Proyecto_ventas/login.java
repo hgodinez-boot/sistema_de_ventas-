@@ -1,4 +1,3 @@
-
 package Proyecto_ventas;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -6,14 +5,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-
 public class login extends JFrame {
         JPanel p1= new JPanel();
         JTextField t1 = new JTextField();
         JPasswordField t2 = new JPasswordField(); 
-        
-        
-        
+                
         //METODO DE INICIO -----------------------------------------------------
         private void inicio(){
             setTitle("LOGIN");
@@ -50,8 +46,7 @@ public class login extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e){
                     VendedoresDAO vd = new VendedoresDAO();
-                    int respuesta = vd.filtro(t1.getText(), t2.getText());
-                                        
+                    int respuesta = vd.filtro(t1.getText(), t2.getText());                                        
                     switch(respuesta){
                         case 1:
                             JOptionPane.showMessageDialog(null, "USUARIO ADMINISTRADOR");
@@ -73,19 +68,13 @@ public class login extends JFrame {
             };
             b1.addActionListener(verificar);
         }
-        
-        
+       
         public void ejecutar(){
             inicio();
         }
-        
-           
-        
-        
+         
         public static void main(String[] args){
         login log= new login();
         log.ejecutar();
-    } 
- 
-    
+    }     
 }
